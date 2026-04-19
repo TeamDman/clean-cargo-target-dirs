@@ -1,0 +1,1 @@
+teamy-mft query "target$" | % { Split-Path -Parent $_ } | % -ThrottleLimit 200 -Parallel { try { Write-Host "Cleaning $_"; Push-Location $_; cargo +stable clean } finally { Pop-Location } }
